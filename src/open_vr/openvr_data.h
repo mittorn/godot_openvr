@@ -45,14 +45,17 @@ private:
 
 	vr::IVRRenderModels *render_models;
 
+	public:
 	// structure to record which overlays go with which viewport
 	struct overlay {
 		vr::VROverlayHandle_t handle;
 		godot::RID viewport_rid;
+		int override_width, override_height;
 	};
 
 	std::vector<overlay> overlays;
 
+	private:
 	OpenVRApplicationType application_type;
 	OpenVRTrackingUniverse tracking_universe;
 

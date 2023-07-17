@@ -8,6 +8,7 @@
 #include <ProjectSettings.hpp>
 #include <Viewport.hpp>
 
+
 namespace godot {
 class OpenVROverlay : public Viewport {
 	GODOT_CLASS(OpenVROverlay, Viewport)
@@ -38,6 +39,8 @@ public:
 
 	bool track_relative_to_device(vr::TrackedDeviceIndex_t p_tracked_device_index, Transform p_transform);
 	bool overlay_position_absolute(Transform p_transform);
+	void set_overlay_flag(int flag, bool enabled);
+	void set_override_size(int width, int height);
 };
 } // namespace godot
 
