@@ -91,9 +91,12 @@ elif env['platform'] in ('x11', 'linux'):
     if env['target'] in ('debug', 'd'):
         env.Append(CCFLAGS = ['-fPIC', '-g3','-Og', '-std=c++17'])
     else:
-        env.Append(CCFLAGS = ['-fPIC', '-g','-O3', '-std=c++17'])
+        env.Append(CCFLAGS = ['-fPIC', '-g','-Os', '-std=c++17'])
+
     env.Append(CXXFLAGS='-std=c++0x')
     env.Append(LINKFLAGS = ['-Wl,-R,\'$$ORIGIN\''])
+    env.Append(CCFLAGS=ARGUMENTS.get('COMMON_FLAGS', ''))
+    env.Append(LINKFLAGS=ARGUMENTS.get('COMMON_FLAGS', ''))
 
     openvr_dll_target = env['target_path'] + "libopenvr_api.so"
     openvr_dll_source = env['openvr_path'] + "bin/linux" + str(env['bits']) + "/libopenvr_api.so"
