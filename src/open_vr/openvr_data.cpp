@@ -335,6 +335,7 @@ void openvr_data::process() {
 		for (int i = 0; i < action_sets.size(); i++) {
 			if (action_sets[i].is_active) {
 				vr::VRActiveActionSet_t actionSet = { 0 };
+				actionSet.nPriority = global_overlay_input?0x01000001:0;
 				actionSet.ulActionSet = action_sets[i].handle;
 
 				active_action_sets[current_index] = actionSet;

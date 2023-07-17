@@ -28,6 +28,7 @@ void OpenVRConfig::_register_methods() {
 
 	register_method("get_device_battery_percentage", &OpenVRConfig::get_device_battery_percentage);
 	register_method("is_device_charging", &OpenVRConfig::is_device_charging);
+	register_method("set_global_overlay_input", &OpenVRConfig::set_global_overlay_input);
 }
 
 void OpenVRConfig::_init() {
@@ -48,6 +49,10 @@ OpenVRConfig::~OpenVRConfig() {
 
 int OpenVRConfig::get_application_type() const {
 	return ovr->get_application_type();
+}
+
+void OpenVRConfig::set_global_overlay_input(bool state) const {
+    ovr->global_overlay_input = state;
 }
 
 void OpenVRConfig::set_application_type(int p_type) {

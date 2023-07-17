@@ -46,6 +46,7 @@ public:
 
 	float get_device_battery_percentage(vr::TrackedDeviceIndex_t p_tracked_device_index);
 	bool is_device_charging(vr::TrackedDeviceIndex_t p_tracked_device_index);
+	void set_global_overlay_input(bool state) const;
 };
 } // namespace godot
 

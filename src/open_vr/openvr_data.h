@@ -159,6 +159,7 @@ private:
 
 public:
 	vr::IVRSystem *hmd; // make this private?
+	bool global_overlay_input;
 
 	openvr_data();
 	~openvr_data();
