@@ -131,7 +131,7 @@ godot_vector2 godot_arvr_get_render_targetsize(const void *p_data) {
 		int i = get_id(overlay_counter, arvr_data->ovr->get_overlay_count());
 		if (overlays[i]) {
 			godot::api->godot_vector2_new(&size, overlays[i]->override_width, overlays[i]->override_height); //(real_t)arvr_data->width, (real_t)arvr_data->height);
-//			printf("overlay_size %d %d %d %d\n", overlay_counter,overlays[i]->handle,  overlays[i]->override_width, overlays[overlay_counter]->override_height);
+			//printf("overlay_size %d %d %d %d\n", overlay_counter,overlays[i]->handle,  overlays[i]->override_width, overlays[overlay_counter]->override_height);
 		} else
 			godot::api->godot_vector2_new(&size, 500, 500); //(real_t)arvr_data->width, (real_t)arvr_data->height);
 		//overlay_counter++;
