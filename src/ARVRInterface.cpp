@@ -134,7 +134,6 @@ godot_vector2 godot_arvr_get_render_targetsize(const void *p_data) {
 		{
 			godot::api->godot_vector2_new(&size, overlays[i]->override_width, overlays[i]->override_height); //(real_t)arvr_data->width, (real_t)arvr_data->height);
 //			printf("overlay_size %d %d %d %d\n", overlay_counter,overlays[i]->handle,  overlays[i]->override_width, overlays[overlay_counter]->override_height);
-			
 		}
 		else
 			godot::api->godot_vector2_new(&size, 500, 500); //(real_t)arvr_data->width, (real_t)arvr_data->height);
@@ -267,13 +266,12 @@ void godot_arvr_commit_for_eye(void *p_data, godot_int p_eye, godot_rid *p_rende
 					vr::TextureID_t texidov = (vr::TextureID_t)godot::VisualServer::get_singleton()->texture_get_texid(godot::VisualServer::get_singleton()->viewport_get_texture(arvr_data->ovr->get_overlay(i).viewport_rid));
 
 					if (texid == texidov) {
-						
 						if( (void*)overlays[arvr_data->ovr->get_overlay_count() - (overlay_counter-1)] == (void*)&arvr_data->ovr->overlays[i])
 							counter_invert = 1;
 						if( (void*)overlays[overlay_counter-1] == (void*)&arvr_data->ovr->overlays[i])
 							counter_invert = 0;
 						int ii = get_id(overlay_counter-1, arvr_data->ovr->get_overlay_count());
-						
+
 						overlays[ii] = &arvr_data->ovr->overlays[i];
 						//printf("commit %d %d %d %d\n", ii, arvr_data->ovr->overlays[i].handle, overlays[ii]->override_width,overlays[ii]->override_height );
 						vrerr = vr::VROverlay()->SetOverlayTexture(arvr_data->ovr->get_overlay(i).handle, &eyeTexture);
