@@ -23,8 +23,7 @@ void OpenVROverlay::_register_methods() {
 	register_method("set_override_size", &OpenVROverlay::set_override_size);
 }
 
-void OpenVROverlay::set_override_size(int width, int height)
-{
+void OpenVROverlay::set_override_size(int width, int height) {
 	ovr->overlays[overlay_id].override_width = width, ovr->overlays[overlay_id].override_height = height;
 }
 OpenVROverlay::OpenVROverlay() {
@@ -132,14 +131,13 @@ void OpenVROverlay::set_overlay_visible(bool p_visible) {
 
 void OpenVROverlay::set_overlay_flag(int flag, bool enabled) {
 	if (overlay) {
-		vr::EVROverlayError vrerr = vr::VROverlay()->SetOverlayFlag(overlay,(vr::VROverlayFlags)flag, enabled);
+		vr::EVROverlayError vrerr = vr::VROverlay()->SetOverlayFlag(overlay, (vr::VROverlayFlags)flag, enabled);
 
 		if (vrerr != vr::VROverlayError_None) {
 			Godot::print(String("Could not set overlay flag, OpenVR error: ") + String::num_int64(vrerr) + ", " + String(vr::VROverlay()->GetOverlayErrorNameFromEnum(vrerr)));
 		}
 	}
 }
-
 
 bool OpenVROverlay::track_relative_to_device(vr::TrackedDeviceIndex_t p_tracked_device_index, Transform p_transform) {
 	if (overlay) {

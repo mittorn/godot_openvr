@@ -106,13 +106,12 @@ void godot_arvr_uninitialize(void *p_data) {
 	arvr_data->ovr->cleanup();
 }
 
-
 static int overlay_counter;
 static int counter_invert = 0;
 static openvr_data::overlay *overlays[32];
-static int get_id(int in, int len)
-{
-	if(counter_invert)
+
+static int get_id(int in, int len) {
+	if (counter_invert)
 		return len - in - 1;
 	else
 		return in;
@@ -130,12 +129,10 @@ godot_vector2 godot_arvr_get_render_targetsize(const void *p_data) {
 		// TODO: we should periodically check if the recommended size has changed (the user can adjust this) and if so update our width/height
 		// and reset our render texture (RID)
 		int i = get_id(overlay_counter, arvr_data->ovr->get_overlay_count());
-		if(overlays[i])
-		{
+		if (overlays[i]) {
 			godot::api->godot_vector2_new(&size, overlays[i]->override_width, overlays[i]->override_height); //(real_t)arvr_data->width, (real_t)arvr_data->height);
 //			printf("overlay_size %d %d %d %d\n", overlay_counter,overlays[i]->handle,  overlays[i]->override_width, overlays[overlay_counter]->override_height);
-		}
-		else
+		} else
 			godot::api->godot_vector2_new(&size, 500, 500); //(real_t)arvr_data->width, (real_t)arvr_data->height);
 		//overlay_counter++;
 	} else {
@@ -210,7 +207,7 @@ void godot_arvr_fill_projection_for_eye(void *p_data, godot_real *p_projection, 
 // can send the render output to OpenVR
 void godot_arvr_commit_for_eye(void *p_data, godot_int p_eye, godot_rid *p_render_target, godot_rect2 *p_screen_rect) {
 	arvr_data_struct *arvr_data = (arvr_data_struct *)p_data;
-	if(p_eye <= 1)overlay_counter++;
+	if (p_eye <= 1) overlay_counter++;
 
 	// This function is responsible for outputting the final render buffer for
 	// each eye.
@@ -266,11 +263,11 @@ void godot_arvr_commit_for_eye(void *p_data, godot_int p_eye, godot_rid *p_rende
 					vr::TextureID_t texidov = (vr::TextureID_t)godot::VisualServer::get_singleton()->texture_get_texid(godot::VisualServer::get_singleton()->viewport_get_texture(arvr_data->ovr->get_overlay(i).viewport_rid));
 
 					if (texid == texidov) {
-						if( (void*)overlays[arvr_data->ovr->get_overlay_count() - (overlay_counter-1)] == (void*)&arvr_data->ovr->overlays[i])
+						if ((void *)overlays[arvr_data->ovr->get_overlay_count() - (overlay_counter - 1)] == (void *)&arvr_data->ovr->overlays[i])
 							counter_invert = 1;
-						if( (void*)overlays[overlay_counter-1] == (void*)&arvr_data->ovr->overlays[i])
+						if ((void *)overlays[overlay_counter - 1] == (void *)&arvr_data->ovr->overlays[i])
 							counter_invert = 0;
-						int ii = get_id(overlay_counter-1, arvr_data->ovr->get_overlay_count());
+						int ii = get_id(overlay_counter - 1, arvr_data->ovr->get_overlay_count());
 
 						overlays[ii] = &arvr_data->ovr->overlays[i];
 						//printf("commit %d %d %d %d\n", ii, arvr_data->ovr->overlays[i].handle, overlays[ii]->override_width,overlays[ii]->override_height );

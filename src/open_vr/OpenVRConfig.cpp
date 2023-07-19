@@ -52,7 +52,7 @@ int OpenVRConfig::get_application_type() const {
 }
 
 void OpenVRConfig::set_global_overlay_input(bool state) const {
-    ovr->global_overlay_input = state;
+	ovr->global_overlay_input = state;
 }
 
 void OpenVRConfig::set_application_type(int p_type) {

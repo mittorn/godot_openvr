@@ -8,7 +8,6 @@
 #include <ProjectSettings.hpp>
 #include <Viewport.hpp>
 
-
 namespace godot {
 class OpenVROverlay : public Viewport {
 	GODOT_CLASS(OpenVROverlay, Viewport)

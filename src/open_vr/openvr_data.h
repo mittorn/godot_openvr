@@ -45,7 +45,7 @@ private:
 
 	vr::IVRRenderModels *render_models;
 
-	public:
+public:
 	// structure to record which overlays go with which viewport
 	struct overlay {
 		vr::VROverlayHandle_t handle;
@@ -55,7 +55,7 @@ private:
 
 	std::vector<overlay> overlays;
 
-	private:
+private:
 	OpenVRApplicationType application_type;
 	OpenVRTrackingUniverse tracking_universe;
 
